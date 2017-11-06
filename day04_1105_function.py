@@ -1,5 +1,10 @@
 import math
-""" function calculator """
+""" function calculator
+ funcs start from 'VERB' : show_ get_ set_ is_ check_ play_
+ - use Doc-string, file, function, class, ...
+ - use # comment : IN= / OUT=, types for better understanding.
+ - use # comment .. write down results, purpose, effect, etc...
+ """
 
 def get_input_args():       # IN=X / OUT= 2'float', 1'int'
     """ return 2'float', 1'int' """

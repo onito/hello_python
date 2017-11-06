@@ -81,6 +81,7 @@ def test3_set_test():
     differ_ = _s1_set.difference(_s2_set)
     print(len(differ_), differ_)# 1 {'l'}
 # test3_set_test()
+
 import random
 import time
 """ random function drill
