@@ -25,16 +25,13 @@ def test2_when_input_integer():
         try:
             _a_int = int(input('input a integer ='))
             _b_int = int(input('input b integer ='))
-
-        except:
+        except ValueError:
             print('Input number only \n\n')
             continue
-
         print('SEE ME? O.K..!!\n\n')
 
         try:
             _answer = _a_int / _b_int
-
         except ZeroDivisionError:
             print('Cannot divide zero', SEPARATOR)
             continue
@@ -43,6 +40,9 @@ def test2_when_input_integer():
             pass
 
         else:
+            pass
+
+        finally:
             pass
 
         print('%s / %s = %s' %(_a_int, _b_int, _answer), SEPARATOR)
