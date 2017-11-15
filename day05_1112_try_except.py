@@ -59,22 +59,7 @@ def test2_when_input_integer():
  - dir(), id(), help(), ..... etc
  """
 
-# print(chr(97))
-# print(ord('a'))
-help(chr)
-print('{:,}'.format(0x10ffff))
 
-import time
-counter = 0
-
-for n in range(1, 1114111):
-    counter += 1
-    if counter <= 5000:
-        pass
-    else:
-        time.sleep(10)
-        counter = 0
-    print('%3s:%s'%(n,chr(n)), '\t', end='')
 
 """ Outter FUNCTIONS (module)
  - random, os, sys, time, datetime, pickle,
