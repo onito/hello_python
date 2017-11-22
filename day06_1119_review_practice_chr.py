@@ -3,10 +3,12 @@ import sys
 import time
 
 import _script_run_utf8
-""" This will help Script-RUN in UTF-8 Unicode encoding
-: STDOUT & STDERR in Unicode encoding UTF-8 """
+""" This will help Script-RUN-package to run in UTF-8 encoding properly
+in WINDOWS os system (between cp494 and utf-8).
+: to set STDOUT & STDERR Unicode encoding, UTF-8 """
 _script_run_utf8.main()
 
+SEPARATOR = '\n' + '__'*30 + '\n\n'
 NUM_ARR = [
     [
     '.ooooo.',
@@ -70,7 +72,6 @@ NUM_ARR = [
     'ooooo..',],
     ]
 
-SEPARATOR = '\n' + '__'*20 + '\n\n\n'
 
 def show_number(number):
     """ show DIGIT being converted by Uniocde Symbols '■','∴' """
@@ -86,8 +87,9 @@ def test1_count_down():
         show_number(n)
         time.sleep(0.5)
         os.system('cls')
-# test1_count_down()
+test1_count_down()
 
+""" Multi-line 'str'-type data """
 _a =  '''
  .ooooo.
  oo..oo.
@@ -120,6 +122,7 @@ def test2():
         print(_c_arr[n].replace('o','■').replace('.','∴'))
 # test2()
 
+""" 'list' type data is much more effective to handle with """
 _a = [
     ['.ooooo.', 'oo..oo.', 'oo..oo.', 'oo..oo.', 'ooooo..'],['.ooooo.',
     'oo...o.', 'oooooo.', '....oo.', 'ooooo..'], ['.ooooo..ooooo.', 'oo..oo.oo...o.',
@@ -145,16 +148,16 @@ _b = [
     'oo..oo.....oo.',
     'ooooo..ooooo..']]
 
-def show_nth_list(pos, change=0):
+def show_nth_list(pos, change_flag=0):
     for n in range(5):
-        if change == 0:
-            print(_a[pos][n])
+        if change_flag == 0:
+            print(NUM_ARR[pos][n])
         else:
-            print(_a[pos][n].replace('o','■').replace('.','∴'))
+            print(NUM_ARR[pos][n].replace('o','■').replace('.','∴'))
     print(SEPARATOR)
-# show_nth_list(0, change=1)
-# show_nth_list(1, change=0)
-# show_nth_list(2, change=1)
+# show_nth_list(0, change_flag=1)
+# show_nth_list(1, change_flag=0)
+# show_nth_list(2, change_flag=1)
 
 def test3_show_3kind_lists():
     for n in range(3):
@@ -180,8 +183,6 @@ def show_unicode_table_by_every_5000():
     help(chr)
     print('{:,}'.format(0x10ffff))
 
-    import time
-
     counter = 0
     for n in range(1, 1114111):
         counter += 1
@@ -194,8 +195,6 @@ def show_unicode_table_by_every_5000():
 # show_unicode_table_by_every_5000()
 
 
-SEPERATOR = '\n' + '__'*30 + '\n\n'
-
 def test1_chr_ord():
     """ ASCii keyboard = 32 ~ 125
      - function CHR('int') <--> ORD('str')
@@ -207,43 +206,65 @@ def test1_chr_ord():
     print('chr(65) =', chr(65), SEPERATOR)
 # test1_chr_ord()
 
-def test2_ascii_table_1_127():
-    for n in range(3, 128):
-        print(chr(n),'\t', end='')
-# test2_ascii_table_1_127()
+def test2_ascii_table_1_to_n1(n1):
+    counter = 0
+    coulumn = 9
+    for n in range(1, n1):
+        counter += 1
+        if 7 <= n <= 13 :
+            if counter == coulumn:
+                counter = 0
+                print('%3s: %s\t' %(n,'..'), end='\n')
+            else:
+                print('%3s: %s\t' %(n,'..'), end='')
+        else:
+            if counter == coulumn:
+                counter = 0
+                print('%3s: %s\t' %(n,chr(n)), end='\n')
+            else:
+                print('%3s: %s\t' %(n,chr(n)), end='')
+# test2_ascii_table_1_to_n1(411)
+
+def show_menu_pan_just_test():
+    """ MAKING MENU_PAN in YOUR RESTAURANT """
+
+    MENU_DICT = {
+        1 : ['BACK_NOODLE', 5000],
+        2 : ['RED_NOODLE', 7000],
+        3 : ['TTUK-BOK-KI', 3000],
+        4 : ['SPRITE', 1000],
+        5 : ['BOTTLED_WATER', 1000],
+        }
 
 
-""" MAKING MENU_PAN in YOUR RESTAURANT """
-
-MENU_DICT = {
-    1 : ['BACK_NOODLE', 5000],
-    2 : ['RED_NOODLE', 7000],
-    3 : ['TTUK-BOK-KI', 3000],
-    4 : ['SPRITE', 1000],
-    5 : ['BOTTLED_WATER', 1000],
-    }
-
-MENU_PAN_FORMAT = """
+    MENU_PAN_FORMAT = """
 ---------------------------------------
    MENU-PAN  / Onito's Restautant
 ---------------------------------------
 %s
 ---------------------------------------"""
 
-MENU_STRING = ''
+    # MENU_PAN_FORMAT = ""                            +\
+    #     "---------------------------------------\n" +\
+    #     "   MENU-PAN  / Onito's Restautant      \n" +\
+    #     "---------------------------------------\n" +\
+    #     "%s\n"                                      +\
+    #     "---------------------------------------\n"
 
-for key in MENU_DICT.keys():
-    # MENU_STRING += '%2s. %-15s ... %4s won' %(
-    #     key,
-    #     MENU_DICT[key][0],
-    #     MENU_DICT[key][1]) + '\n'
+    MENU_STRING = ''
+    for key in MENU_DICT.keys():
+        # MENU_STRING += '%2s. %-15s ... %4s won' %(
+        #     key,
+        #     MENU_DICT[key][0],
+        #     MENU_DICT[key][1]) + '\n'
 
-    MENU_STRING += '{:>2}. {:<14} {:.^10} {:5,} won'.format(
-        key,
-        MENU_DICT[key][0],
-        '.',
-        MENU_DICT[key][1]) + '\n'
+        MENU_STRING += '{:>2}. {:<14} {:.^10} {:5,} won'.format(
+            key,
+            MENU_DICT[key][0],
+            '.',
+            MENU_DICT[key][1]) + '\n'
 
-print(MENU_STRING, SEPARATOR)
+    print(MENU_STRING, SEPARATOR)
 
-print(MENU_PAN_FORMAT %MENU_STRING)
+    print(MENU_PAN_FORMAT %MENU_STRING)
+# show_menu_pan_just_test()

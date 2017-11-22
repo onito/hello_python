@@ -1,17 +1,23 @@
 #! python
 import os
 import sys
+import datetime
 """ file-docs : OPEN A RESTAURANT : Making Order System
   (1) to Show MENU_PAN = MENU_PAN (changeable)
   (2) to Input order = by Item index & quantity
   (3) to Calculate the Bills = Including (Tax= 6.5%, Tip= 10%)
+
+ * Release Note : correct sorting version
+    - Dict can not be ordered / arrange 'list' first.
+    - Question : _arr.sort() = None. sorted(_arr) = 'list' O.K
+    - I don't know the differences btw .sort() & sorted()
 """
 SEPARATOR = '__'*22
 MENU_DICT = {
-    1 : ['BACK_NOODLE', 5000],
-    2 : ['RED_NOODLE', 7000],
-    3 : ['ROLLED_RICE', 4000],
-    4 : ['TTUK-BOK-KI', 3000],
+    1 : ['BACK_NOODLE', 5500],
+    2 : ['RED_NOODLE', 6500],
+    3 : ['ROLLED_RICE', 3500],
+    4 : ['TTUK-BOK-KI', 3500],
     5 : ['FRIED_DUMPLINGS', 3000],
     6 : ['SPRITE(7-UP)', 1000],
     7 : ['BOTTLED_WATER', 500],}
@@ -41,20 +47,14 @@ def show_menu_pan():
             '.',
             MENU_DICT[key][1]) + '\n'
     print(MENU_PAN_FORMAT %MENU_STRING)
-# show_menu_pan()
 
 def get_input_order_string():
     """ get _order_arr=['1-1', '2-3', '3-1', '4-3'] from input_string """
     _order = input(
         'Please, order menu by index-quantity & space \n' +\
-        '(Ex: 1-2 2-1 3-2... just once for each index)  :  \n\n\n')
+        '(Ex: 1-2 2-1 3-2... just once for each index)  :  \n')
     _order_arr = _order.strip().split()
-
-    # print(_order_arr.sort())    # None  .... 'None Type' ERROR WHY NONE ??!!
-    # print(sorted(_order_arr))   # 'list'  .... this is O.K! WHY???
-
-    return _order_arr
-# get_input_order_string()
+    return sorted(_order_arr)
 
 def get_order_dict_from_arr(_order_arr):
     """ get order_dict= {1:1, 2:3, 3:1, 4:3} from _order_arr
@@ -67,20 +67,22 @@ def get_order_dict_from_arr(_order_arr):
         _val = int(strip.strip().split('-')[1])
         order_dict[_key] = _val
     return order_dict
-# get_order_dict_from_arr(_order_arr)
 
-"""   INFORMATION Myself..
-import menu_order_v2
-if __name__ == '__main__':
-    print(help(menu_order_v2))
-"""
-
+def is_play_again():
+    """ This function returns True if the player wants to play again, with 'y'
+    otherwise it returns False. / using .startswith('str')
+    """
+    print('\n\nDo you want to check bill of other table? (yes or no)')
+    return input().lower().startswith('y')
 
 def main():
-    print('\n\n\n')
     show_menu_pan()
+
     _order_arr = get_input_order_string()
+    # t0 make 'list' ['1-1', '2-3', '3-1', '4-3'] fron input_string
+
     _order_dict = get_order_dict_from_arr(_order_arr)
+    # to make 'dict' {1:1, 2:3, 3:1, 4:3} from oder_arr
 
     print('\n'*5, 'YOUR ORDER = ', _order_dict)
     print(SEPARATOR,'\n')      # { 1:3, 2:1, 3:1, 4:3}
@@ -94,7 +96,7 @@ def main():
         item = MENU_DICT[key][0]
         price = MENU_DICT[key][1]
 
-        calculate_detail_arr.append('{}. {:<15} :{:6,} x{:2} = {:>6,} won'.format(
+        calculate_detail_arr.append('{}. {:<15} {:6,} x{:2} = {:>6,} won'.format(
             i,
             item,
             price,
@@ -123,6 +125,13 @@ def main():
     print(' TOTAL price {:.<15} {:6,} won'.format('.', total_price))
     print(' PAY AMOUNT  {:.<15} {:6,} won (deprive 10 digit)'.format('.', 100 * int(total_price/100)))
 
+
 if __name__ == '__main__':
     while True:
         main()
+
+        if is_play_again():
+            os.system('cls')
+            continue
+        else:
+            break
