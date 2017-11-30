@@ -2,11 +2,11 @@ import os
 import sys
 import time
 
-import _script_run_utf8
-""" This will help Script-RUN-package to run in UTF-8 encoding properly
-in WINDOWS os system (between cp494 and utf-8).
-: to set STDOUT & STDERR Unicode encoding, UTF-8 """
-_script_run_utf8.main()
+# import _script_run_utf8
+# """ This will help Script-RUN-package to run in UTF-8 encoding properly
+# in WINDOWS os system (between cp494 and utf-8).
+# : to set STDOUT & STDERR Unicode encoding, UTF-8 """
+# _script_run_utf8.main()
 
 SEPARATOR = '\n' + '__'*30 + '\n\n'
 NUM_ARR = [

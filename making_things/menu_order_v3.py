@@ -1,7 +1,3 @@
-#! python
-import os
-import sys
-import datetime
 """ file-docs : OPEN A RESTAURANT : Making Order System
   (1) to Show MENU_PAN = MENU_PAN (changeable)
   (2) to Input order = by Item index & quantity
@@ -12,6 +8,10 @@ import datetime
     - Question : _arr.sort() = None. sorted(_arr) = 'list' O.K
     - I don't know the differences btw .sort() & sorted()
 """
+#! python
+import os
+import datetime
+
 SEPARATOR = '__'*22
 MENU_DICT = {
     1 : ['BACK_NOODLE', 5500],
@@ -36,17 +36,17 @@ BILL_FORMAT = ""                                    +\
 
 def show_menu_pan():
     """ MAKING MENU_PAN of Your RESTAURANT
-      - print(MENU_PAN_FORMAT % MENU_STRING)
-      - make MENU_STRING from MENU_DICT
+      - print(MENU_PAN_FORMAT % menu_string)
+      - make menu_string from MENU_DICT
     """
-    MENU_STRING = ''
+    menu_string = ''
     for key in MENU_DICT.keys():            # use .keys() .values() .items()
-        MENU_STRING += '{:>2}. {:<16} {:.^10} {:5,} won'.format(
+        menu_string += '{:>2}. {:<16} {:.^10} {:5,} won'.format(
             key,
             MENU_DICT[key][0],
             '.',
             MENU_DICT[key][1]) + '\n'
-    print(MENU_PAN_FORMAT %MENU_STRING)
+    print(MENU_PAN_FORMAT %menu_string)
 
 def get_input_order_string():
     """ get _order_arr=['1-1', '2-3', '3-1', '4-3'] from input_string """
@@ -60,7 +60,8 @@ def get_order_dict_from_arr(_order_arr):
     """ get order_dict= {1:1, 2:3, 3:1, 4:3} from _order_arr
      WHY? key:value have to be 'int'? -- for using it directly
       (1) only split('-') = 'str' .... {1:'1', 2:'3', 3:'1', 4:'3'}
-      (2) forced 'int'    = 'int' .... {1:1, 2:3, 3:1, 4:3} """
+      (2) forced 'int'    = 'int' .... {1:1, 2:3, 3:1, 4:3}
+    """
     order_dict = {}
     for strip in _order_arr:
         _key = int(strip.strip().split('-')[0])
@@ -76,6 +77,7 @@ def is_play_again():
     return input().lower().startswith('y')
 
 def main():
+    """ command function """
     show_menu_pan()
 
     _order_arr = get_input_order_string()
@@ -85,7 +87,7 @@ def main():
     # to make 'dict' {1:1, 2:3, 3:1, 4:3} from oder_arr
 
     print('\n'*5, 'YOUR ORDER = ', _order_dict)
-    print(SEPARATOR,'\n')      # { 1:3, 2:1, 3:1, 4:3}
+    print(SEPARATOR, '\n')      # { 1:3, 2:1, 3:1, 4:3}
 
 
     menu_price = 0
@@ -116,15 +118,23 @@ def main():
     rate_tip = 10.0/100
     tip = int(rate_tip * (menu_price * (1 + rate_tax)))
 
-    print(' Menu price  {:.<15} {:6,} won'.format('.', menu_price))
-    print(' TAX({:4}%)  {:.<15} {:6,} won'.format(rate_tax*100,'.', tax))
-    print(' TIP({:4}%)  {:.<15} {:6,} won'.format(rate_tip*100,'.', tip))
+    print('    Menu price  {:.<15} {:6,} won'.format('.', menu_price))
+    print('    TAX({:4}%)  {:.<15} {:6,} won'.format(rate_tax*100, '.', tax))
+    print('    TIP({:4}%)  {:.<15} {:6,} won'.format(rate_tip*100, '.', tip))
 
     print(SEPARATOR)
     total_price = menu_price + tax + tip
-    print(' TOTAL price {:.<15} {:6,} won'.format('.', total_price))
-    print(' PAY AMOUNT  {:.<15} {:6,} won (deprive 10 digit)'.format('.', 100 * int(total_price/100)))
+    print('   TOTAL price {:.<15} {:6,} won'.format('.', total_price))
+    print('   PAY AMOUNT  {:.<15} {:6,} won '.format(
+        '.',
+        100 * int(total_price/100))
+         )
+    print('{:>44}'.format('(deprive 10 digit)'))
+    print(SEPARATOR)
 
+    _time = datetime.datetime.now()
+    str_time = _time.strftime('%p %I:%M:%S - %B %d, %A')
+    print('{:>44}'.format(str_time))
 
 if __name__ == '__main__':
     while True:
