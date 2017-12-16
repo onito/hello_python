@@ -91,7 +91,7 @@ def test2_drawing_stars():
         tu.penup()
         tu.home()
         tu.pendown()
-test2_drawing_stars()
+# test2_drawing_stars()
 
 _a = tu.Turtle()
 _a.color('red', 'yellow')
@@ -172,7 +172,7 @@ def xmas_tree():
     tu.home()
     move(tu, 0, -70)
     tu.home()
-# xmas_tree()
+xmas_tree()
 
 
 tu.mainloop()

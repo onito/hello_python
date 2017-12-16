@@ -1,5 +1,3 @@
-import io
-import sys
 """ make stdout environment cp494 to utf-8 [WINDOWS-7]
   1.BEFORE: 안녕세계 = �ȳ缼��
     - sys.getdefaultencoding() = utf-8
@@ -9,7 +7,9 @@ import sys
     - sys.getdefaultencoding() = utf-8
     - sys.stdout.encoding = 'utf-8'
  """
- 
+import io
+import sys
+
 def main():
     sys.stdout = io.TextIOWrapper(sys.stdout.detach(), encoding = 'utf-8')
     sys.stderr = io.TextIOWrapper(sys.stderr.detach(), encoding = 'utf-8')
