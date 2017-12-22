@@ -1,7 +1,7 @@
 """ TEST : ATOM TELETYPE PACKAGE:
   - DAY09_1210_tkinter_turtle.py
   - DOCUMENTATION :
-        https://docs.python.org/3.3/library/tu.html?highlight=turtle
+        https://docs.python.org/3.6/library/turtle.html
   - Cursor Notes :
         YELLOW : Junhyeok
         ORANGE : Junhaa
