@@ -7,11 +7,11 @@ def get_secret_num_digit(num_digits=10):
     numbers = list(range(10))
     # print('neated numbers=',numbers)
     random.shuffle(numbers)
-    print('shuff_numbers =',numbers)
+    print('shuff_numbers =', numbers)
 
     secret_number = ''
-    for i in range(num_digits):
-        secret_number += str(numbers[i])
+    for n in range(num_digits):
+        secret_number += str(numbers[n])
     return secret_number
 
 print(get_secret_num_digit.__doc__)

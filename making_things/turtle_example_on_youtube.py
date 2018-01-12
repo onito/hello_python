@@ -46,10 +46,10 @@ def test1_random_walk():
                 obj.sety(0)
                 obj.down()
 
-    random_walk(tu, 6000)
+    random_walk(tu, 600)
     print('\a')
     time.sleep(10)
-# test1_random_walk()
+test1_random_walk()
 
 def test2_color_wheel():
     """ making simple colored wheel """
@@ -79,7 +79,7 @@ def test3_color_wheel_v01():
     color_pick = ['red', 'green', 'blue', 'yellow', 'darkgreen', 'orange',
                   'darkred', 'lightgreen', 'darkblue', 'gray', 'purple', 'pink']
     pos = 0
-    for n in range(14):
+    for n in range(10):
 
         if pos >= len(color_pick)-1:
             pos = 0
@@ -159,6 +159,7 @@ def test4_sunflower(posx, posy):
     # tina.exitonclick() # lets you x out of the window when outside of idle
     tina.forward(1000)
 # test4_sunflower(-30, 25)
+test4_sunflower(0, 0)
 
 def test5_tree_hello(posx, posy):
     """ making colored hello tree """

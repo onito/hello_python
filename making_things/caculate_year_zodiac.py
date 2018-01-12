@@ -10,7 +10,7 @@ import _script_run_utf8
 _script_run_utf8.main()
 
 THIS_YEAR = 2008        # 무자년(쥐띠해) = 2008년
-TARGET_YEAR = 1969      # 임진년(용띠해) = 1592년
+TARGET_YEAR = 2018      # 임진년(용띠해) = 1592년
 _answer = THIS_YEAR - TARGET_YEAR
 _year = '갑을병정무기경신임계'              #10
 _number = '4567890123'
