@@ -47,7 +47,7 @@ def show_shuffled_bars_before_after(quantity):
         os.system('cls')
 
 # (1) 섞은 상태를 보여주고, 셔플 된 숫자 리스트를 생성(Return) 한다.
-shuffled_numbers = show_shuffled_bars_before_after(quantity=19)
+shuffled_numbers = show_shuffled_bars_before_after(quantity=20)
 
 # (2) 밀어내기 마지막 라인을 n-1 에서 1 까지, 계속 줄여나간다.
 last_number = len(shuffled_numbers)-1
@@ -60,13 +60,13 @@ while last_number >= 1:
 
         if n < 0 or n == last_number-1:
             # changing = -1 : 바꾸고 있는 위치 보여주기 기능 비활성화
-            #  - ASCII 번호 #127 = 1 바이트 크기의 작은 사각형 '박스'
+            #  - ASCII 번호 127 = 1 바이트 크기의 작은 사각형 '박스'
             display_bars(shuffled_numbers, changing=-1, other_bar=chr(127))
         else:
             # 현재 카운트+1 위치에서 바꾸고 있는 상태 보여주기
             display_bars(shuffled_numbers, changing=n+1, other_bar=chr(127))
-        # time.sleep(1)               # 1 초를 지연 시킨다. (delay)
+        time.sleep(0.4)             # 0.4 초를 지연 시킨다. (delay)
     last_number -= 1                # 한번 순환 할 때 마다 '1'씩 줄여 나간다
 
 # (3) 최종 정렬이 끝난 '리스트'를 보여준다
-print('\n\nfinished=', shuffled_numbers)
+print('\n\nfinished', shuffled_numbers)
