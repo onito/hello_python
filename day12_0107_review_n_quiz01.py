@@ -85,7 +85,7 @@ def test03_divide_digit_5():
             quit()
 # test03_divide_digit_5()
 
-def extra01_randome_multiple():
+def extra01_random_multiple():
     for n in range(11180, 112000, 113):
         for i in range(1000, 1808800, 13817):
             print('{:7,} x {:9,} = {:14,}'.format(n, i, n*i))

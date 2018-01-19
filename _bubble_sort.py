@@ -7,6 +7,7 @@ import time                 # 딜레이를 만들기 위한 모듈
 import random               # 무작위로 숫자를 섞기(셔플링)하기 위한 모듈
 
 def display_bars(numbers, changing=-1, now_bar='=', other_bar='%'):
+    """ """
     for i in range(len(numbers)):
         if i == changing:
             print('{:2}: {}'.format(numbers[i], now_bar*numbers[i]), flush=True)
