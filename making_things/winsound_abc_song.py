@@ -22,18 +22,22 @@ def 야_씨피구사구_스크립트에한글좀쓰자():
     _script_run_utf8.main()
 야_씨피구사구_스크립트에한글좀쓰자()
 
-hrz = 37
-tempo = 200
-for i in range(1, 11):
-    wins.Beep(hrz, tempo)
-    time.sleep(0.3)
-    print("{:2} 번째 발성이 끝났습니다-->  {:3} Hrz, {:} tempo.".format(
-        i, hrz, tempo),
-        flush=True)
-    hrz += 50
-
-
-
+def 발성연습_마이크테스트_아아():
+    """ 파이썬3 은 유니코드를 지원, 한글변수,매소드명 작명가능(추천하지 않음)
+     - 피씨구사구 = 윈도우 한글코드
+     - 발성연습_마이크테스트_아아() = 주파수와 길이를 사용하여, Beep()함수로
+     - PC스피커에 소리를 만들어내는 함수.
+    """
+    hrz = 37
+    tempo = 200
+    for i in range(1, 11):
+        wins.Beep(hrz, tempo)
+        time.sleep(0.3)
+        print("{:2} 번째 발성이 끝났습니다-->  {:3} Hrz, {:} tempo.".format(
+            i, hrz, tempo),
+            flush=True)
+        hrz += 50
+# 발성연습_마이크테스트_아아()
 
 # ---- 고난이도 연주 (1)ABC / (2)오드클레..
 def song_abc():
@@ -41,12 +45,12 @@ def song_abc():
       refer to : Gist.github - https://goo.gl/7BzDDy
       reference blog : http://freeprog.tistory.com/353
     """
-    import winsound
-
     TEMPO = 1000    # playing speed = 1000
-    DICT_NOTE = {   # DICT_NOTE = do, re, mi, pa, sol, ra, ti --->  Hz
+    # DICT_NOTE = do, re, mi, pa, sol, ra, ti --->  Hz
+    DICT_NOTE = {
         'do':261, 're':293, 'mi':329, 'pa':349, 'sol':391, 'ra':440, 'ti':493,
         'DO':530, 'RE':590, }
+
     A_NOTES = [
         [['do', 'mi', 'mi', 'mi', 'sol', 'sol', 're', 'pa', 'pa', 'ra', 'ti', 'ti'],
          [4, 4, 2, 4, 4, 2, 4, 4, 2, 4, 4, 2]],
@@ -65,7 +69,7 @@ def song_abc():
         print('__'*40)
         print('PLAYING NOTES for DO-RE-MI')
         print('..'*40)
-        for num in enumerate(a_notes):
+        for num in  range(len(a_notes)):
             print(a_notes[num][0])        # ['do', 're', 'me', ...]
         print()
         print('__'*40)
@@ -73,7 +77,7 @@ def song_abc():
     def get_ziped_music(a_notes): # IN= 'list' / OUT= ZIP_OBJ
         note = []
         hrzs = []
-        for num in enumerate(a_notes):   # n=3
+        for num in range(len(a_notes)):   # n=3
             note += a_notes[num][0]
             hrzs += a_notes[num][1]
         return zip(note, hrzs)
@@ -81,21 +85,21 @@ def song_abc():
     def get_play_sound(zip_music):      #IN= ZIP_OBJECT
         for key, duration in list(zip_music):
             if key != 'end':
-                winsound.Beep(DICT_NOTE[key], int(TEMPO/duration))
+                wins.Beep(DICT_NOTE[key], int(TEMPO/duration))
             else:
                 pass
                 # return False  # play once ...
         return True             # play repeatedly ...
 
-    def main_abc_song():
-        show_a_score(A_NOTES)
+    if __name__ == '__main__':
+        # print(A_NOTES[1][0])
+        # print(len(A_NOTES))
 
+        show_a_score(A_NOTES) # play 2 times
         for i in range(2):
             zip_music = get_ziped_music(A_NOTES)
             get_play_sound(zip_music)
-
-    if __name__ == '__main__':
-        main_abc_song()    # play 2 times
+# song_abc()
 
 def song_au_clair():
     """ -------------- Window beep sound :: calculating Hz :
@@ -118,7 +122,7 @@ def song_au_clair():
     def play(song, tempo):
         for note in song.lower().split():
             if note in NOTES.keys():
-                winsound.Beep(NOTES[note], int(PERIOD(tempo)*1000))
+                wins.Beep(NOTES[note], int(PERIOD(tempo)*1000))
             else:
                 time.sleep(PERIOD(tempo))
 
@@ -145,3 +149,4 @@ def song_au_clair():
 
     if __name__ == '__main__':
         main_au_clair()    # play 2 times
+song_au_clair()
