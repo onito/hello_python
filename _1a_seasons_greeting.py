@@ -8,6 +8,9 @@ b'\xeb\xac\xb4\xec\x88\xa0\xeb\x85\x84,\xec\x83\x88\xed\x95\xb4\xeb\
 \xb3\xb5\xeb\xa7\x8e\xec\x9d\xb4'
 무술년,새해복많이
 """
+import _script_run_utf8
+_script_run_utf8.main()
+
 _a = list(map((lambda letter: hex(ord(letter))),(list('HAPPY NEW YEAR 2018'))))
 print(_a)
 
@@ -17,11 +20,6 @@ print(_b)
 for num in _a:
     print(chr(eval(num)), end='')
 print()
-
-import io
-import sys
-sys.stdout = io.TextIOWrapper(sys.stdout.detach(), encoding='utf-8')
-sys.stderr = io.TextIOWrapper(sys.stderr.detach(), encoding='utf-8')
 
 _a = b'\xeb\xac\xb4\xec\x88\xa0\xeb\x85\x84,\xec\x83\x88\xed\x95\xb4\xeb\
 \xb3\xb5\xeb\xa7\x8e\xec\x9d\xb4'.decode('utf-8')
