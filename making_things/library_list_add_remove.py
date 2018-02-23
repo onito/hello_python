@@ -66,6 +66,6 @@ def main():
     print("\n\n이용해 주셔서 감사합니다...")
 #
 if __name__ == '__main__':
-#     main()
-    import add_remove_in_list
-    help(add_remove_in_list)
+    main()
+    # import library_list_add_remove
+    # help(library_list_add_remove)

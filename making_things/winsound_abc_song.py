@@ -99,7 +99,6 @@ def song_abc():
         for i in range(2):
             zip_music = get_ziped_music(A_NOTES)
             get_play_sound(zip_music)
-# song_abc()
 
 def song_au_clair():
     """ -------------- Window beep sound :: calculating Hz :
@@ -149,4 +148,7 @@ def song_au_clair():
 
     if __name__ == '__main__':
         main_au_clair()    # play 2 times
-song_au_clair()
+
+if __name__ == '__main__':
+    song_abc()
+    song_au_clair()
