@@ -1,5 +1,5 @@
 """ 피클을 이용한 화일 read(=load) & dump(=write)
-  - diary_dict = pickle.load(f) : 객체(f)를 읽어서 장전한다.
+  - diary_dict = pickle.load(f) : 객체(f)를 읽어서 올린다.
   - pickle.dump(diary_dict, f) : 객체(f)에 데이터(dict)를 덤프한다.
 """
 import os
@@ -46,12 +46,9 @@ def check_pickle_exist():
 from _static._pickle import pickle_data_add1 as pda
 
 check_pickle_exist()
-# diary_dict = get_dict_read_pickle(FILE_NAME_WITH_DIR)
-# show_loaded_diary_dict(diary_dict)
 diary_dict = get_dict_read_pickle(FILE_NAME_WITH_DIR)
 
 while True:
-
     for add_list in pda.add_lists:
         add_dict_pickle(diary_dict, add_list)
 

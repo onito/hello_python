@@ -81,7 +81,7 @@ def test_keys_values_dict():
             type(values[2])))
 # test_keys_values_dict()
 
-""" 문제. 포괄적 리스트 (comprehensive List)형식 3개를 만들어라
+""" 문제. 포괄적 리스트 (comprehension List)형식 3개를 만들어라
  # 0 ~ 9 까지 int 리스트형 자료를 포괄적 리스트로 만들고 / 프린트
  # 1 ~ 10 까지 int '홀수형' 자료를 포괄적 리스트로 만들고 / 프린트
  # 1 ~ 10 까지 int 홀수만 'NG' str형 자료로 바꾸고 / 프린트

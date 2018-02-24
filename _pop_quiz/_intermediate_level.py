@@ -140,7 +140,7 @@ def test_convert_to_snake():
         # """ CASE3 = 첫번째, 두번째 문자가 대문자일때 = 상수타입 """
         if input_str[0].isupper() and input_str[1].isupper():
             for word in input_str:
-                if word.isalpha:
+                if word.isalpha():
                     word = word.lower()
                 word_set += word
         else:
@@ -155,4 +155,4 @@ def test_convert_to_snake():
             word_set = word_set[1:]
 
         print(word_set)
-# test_convert_to_snake()
+test_convert_to_snake()

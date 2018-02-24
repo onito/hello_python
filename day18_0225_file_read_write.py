@@ -73,7 +73,7 @@ def test2_i_have_a_dream():
 
     if __name__ == '__main__':
         using_object_to_list()
-        using_object_itself()
+        # using_object_itself()
 
 def is_file_exist(file_name):
     """ file exist(), file remove()
@@ -83,7 +83,7 @@ def is_file_exist(file_name):
     """
     file_name_with_dir = FILE_DIR + file_name
 
-    if os.path.exists(file_name_with_dir):
+    if os.path.isfile(file_name_with_dir):
         return True
     else:
         return False
@@ -99,8 +99,8 @@ def set_remove_file(file_name):
 
 
 if __name__ == '__main__':
-    test1_with_open_file_rw()
-    # test2_i_have_a_dream()
+    # test1_with_open_file_rw()
+    test2_i_have_a_dream()
 
     file_name = 'test_rw_file.pdb'
 
@@ -109,10 +109,10 @@ if __name__ == '__main__':
     else:
         print("...'%s'을 찾을수 없습니다..."% file_name, flush=True)
 
-    time.sleep(2)
-    set_remove_file(file_name)
-    print(" '%s' 화일이 남아있는가? : "% file_name, is_file_exist(file_name))
-    pass
+    # time.sleep(2)
+    # set_remove_file(file_name)
+    # print(" '%s' 화일이 남아있는가? : "% file_name, is_file_exist(file_name))
+    # pass
 
 
 
