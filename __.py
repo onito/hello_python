@@ -20,7 +20,7 @@ def test2_readlines(FILE_NAME=FILE_NAME):
     with open(FILE_DIR+FILE_NAME, mode='r', encoding='utf-8') as f:
         strings = f.readlines()   # 리스트를 반환 한다
 
-    print(strings)  
+    print(strings)
     print('\n\n')
 
     for string in strings:
