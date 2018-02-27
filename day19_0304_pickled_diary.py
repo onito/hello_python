@@ -9,43 +9,44 @@ FILE_DIR = './_static/_pickle/'
 FILE_NAME = 'wimpy_diary_dict.pck'
 FILE_NAME_WITH_DIR = FILE_DIR + FILE_NAME
 
-def get_dict_read_pickle(FILE_NAME_WITH_DIR):
-    with open(FILE_NAME_WITH_DIR, 'rb') as f:
+
+def get_dict_read_pickle(file_name_with_dir):
+    with open(file_name_with_dir, 'rb') as f:
         return pickle.load(f)
 
-def write_init_pickle_file(FILE_NAME_WITH_DIR):
-    diary_dict = {
-        0: [
-            '날짜포맷(yyyy-mm-dd)',
-            '제목은 한줄로.',
-            '내용은 간단히 씁니다..'],}
 
-    with open(FILE_NAME_WITH_DIR, 'wb') as f:
-        pickle.dump(diary_dict, f)
+def write_init_pickle_file(file_name_with_dir):
+    """ 만약 화일이 존재하지 않으면, 기본 화일(dict)을 만든다 """
+    if os.path.isfile(file_name_with_dir):
+        print("...이미 피클화일이 존재합니다...", flush=True)
+
+    else:
+        diary_dict = {
+            0: ['날짜포맷(yyyy-mm-dd)',
+                '제목 한줄..',
+                '내용은 간단히 씁니다..'], }
+        with open(file_name_with_dir, 'wb') as f:
+            pickle.dump(diary_dict, f)
+
+        print('...기본 피클화일을 새로 만들었습니다.', flush=True)
+
 
 def show_loaded_diary_dict(diary_dict):
-        for key in diary_dict:
-            print('____________________')
-            for line in diary_dict[key]:
-                print(line)
+    for key in diary_dict:
+        print('____________________')
+        for line in diary_dict[key]:
+            print(line)
+
 
 def add_dict_pickle(diary_dict, add_list):
     add_key = max(diary_dict.keys()) + 1
     diary_dict[add_key] = add_list
     print("add_list 가 추가되었습니다.")
 
-def check_pickle_exist():
-    if not os.path.isfile(FILE_NAME_WITH_DIR):
-        write_init_pickle_file(FILE_NAME_WITH_DIR)
-        print('...피클화일을 새로 만들었습니다.', flush=True)
-    else:
-        print("...이미 피클화일이 존재합니다...", flush=True)
-
-
 
 from _static._pickle import pickle_data_add1 as pda
 
-check_pickle_exist()
+write_init_pickle_file(FILE_NAME_WITH_DIR)
 diary_dict = get_dict_read_pickle(FILE_NAME_WITH_DIR)
 
 while True:
@@ -61,4 +62,4 @@ while True:
             print('... 실행을 종료합니다. ...')
         break
 
-    print('... 다이어리를 다시한번 중복해서 기록합니다 ...')
+    print('... 다이어리를 다시 한번 중복해서 기록합니다 ...')
