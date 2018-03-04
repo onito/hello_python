@@ -15,7 +15,7 @@ def test_add_num():
     for num in range(number+1):
         total += num
     print('정답은 {:} 입니다'.format(total))
-# test_add_num()
+test_add_num()
 
 """ 문제. 스윙스 헬로월드
  # 좌우로 0.2초 씩 움직이는 헬로월드를 만들어라

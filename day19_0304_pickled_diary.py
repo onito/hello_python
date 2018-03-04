@@ -14,7 +14,6 @@ def get_dict_read_pickle(file_name_with_dir):
     with open(file_name_with_dir, 'rb') as f:
         return pickle.load(f)
 
-
 def write_init_pickle_file(file_name_with_dir):
     """ 만약 화일이 존재하지 않으면, 기본 화일(dict)을 만든다 """
     if os.path.isfile(file_name_with_dir):
@@ -30,21 +29,20 @@ def write_init_pickle_file(file_name_with_dir):
 
         print('...기본 피클화일을 새로 만들었습니다.', flush=True)
 
-
 def show_loaded_diary_dict(diary_dict):
     for key in diary_dict:
         print('____________________')
         for line in diary_dict[key]:
             print(line)
 
-
 def add_dict_pickle(diary_dict, add_list):
     add_key = max(diary_dict.keys()) + 1
     diary_dict[add_key] = add_list
     print("add_list 가 추가되었습니다.")
 
-
 from _static._pickle import pickle_data_add1 as pda
+
+
 
 write_init_pickle_file(FILE_NAME_WITH_DIR)
 diary_dict = get_dict_read_pickle(FILE_NAME_WITH_DIR)
