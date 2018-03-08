@@ -1,36 +1,35 @@
 import _script_run_utf8
 _script_run_utf8.main()
 
-test_text1 = """*~~블라블브라
+TEST_TEXT1 = """*~~블라블브라
 *~~오늘은 날씨
 *~~오후에는
 *~~저녁에는
 *~~맛있게
 """
 
-test_text2 = "오늘은 일요일 입니다.\n" +\
+TEST_TEXT2 = "오늘은 일요일 입니다.\n" +\
              "오늘은 날씨가 좋습니다.\n" +\
              "오후에는 나가서 놀아야 합니다.\n" +\
              "저녁에는 밥을 먹습니다.\n" +\
              "맛있게 먹습니다.\n"
 
 
-# print(test_text1)
-# print(test_text2)
+# print(TEST_TEXT1)
+# print(TEST_TEXT2)
 
 def write():                    # 화일명으로 data를 기록한다.
     """
     f = open('./_static/_pdb/day18-1_text.pdb', 'w', encoding='utf8')
-    f.write(test_text2)
+    f.write(TEST_TEXT2)
     f.close()
     """
 
     with open('./_static/_pdb/day18-1_text.pdb', 'w', encoding='utf8') as f:
-        f.write(test_text1)
+        f.write(TEST_TEXT1)
 
     with open('./_static/_pdb/day18-1_text.pdb', 'a', encoding='utf8') as f:
-        f.write(test_text2)
-
+        f.write(TEST_TEXT2)
 
 write()
 

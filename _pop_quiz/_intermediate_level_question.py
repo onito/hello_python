@@ -11,9 +11,9 @@ _script_run_utf8.main()
 """
 def test_acho_hicop():
     pass
-# test_acho_hicop()
+test_acho_hicop()
 
-
+quit()
 """ 문제. A-1 편의점 물건을 계산하라
 # 편의점 카운터에서 물건코드를 숫자(int)을 입력받은 후 최종가격을 알려주는 SW
 # 가격DB는 3개만 딕셔너리 / 손님은 'item-갯수' 1-1 2-1 3-1 spc구분으로 입력
