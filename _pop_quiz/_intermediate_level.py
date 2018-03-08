@@ -26,7 +26,7 @@ def test_acho_hicop():
         else:
             print(count, flush=True)
         time.sleep(0.5)
-# test_acho_hicop()
+test_acho_hicop()
 
 
 """ 문제. A-1 편의점 물건을 계산하라

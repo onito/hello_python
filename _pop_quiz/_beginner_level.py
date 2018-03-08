@@ -15,7 +15,7 @@ def test_add_num():
     for num in range(number+1):
         total += num
     print('정답은 {:} 입니다'.format(total))
-test_add_num()
+# test_add_num()
 
 """ 문제. 스윙스 헬로월드
  # 좌우로 0.2초 씩 움직이는 헬로월드를 만들어라
@@ -23,10 +23,10 @@ test_add_num()
     |[HELL0]----------| WORLD!
     |----------[HELL0]| WORLD!
  """
-def test_swing_hello():
-    import os
-    import time
+import os
+import time
 
+def test_swing_hello():
     SIGN = "[HELLO]"
 
     def show_screen(start, stop, step):
@@ -45,6 +45,43 @@ def test_swing_hello():
         show_screen(0, 11, 1)
         show_screen(10,-1,-1)
 # test_swing_hello()
+
+
+
+def test_swing_hello2():
+    kwargs = {
+        'sleep' : 0.1,
+        'length' : 15,
+        'shape' : '.',
+        'word' : 'HELLO',}
+
+    args = [0.1, 15, '_', 'HELLO']
+
+    def test2(sleep, length, shape, word):
+        while True:
+            a = 0
+            for n in range(length, 0, -1):
+                front = (shape * n)
+                back = (shape * a)
+                print('|' + front + '[' + word + ']' + back + '|' + ' WORLD!', flush=True)
+                print('|' + back + '[' + word + ']' + front + '|' + ' WORLD!', flush=True)
+                time.sleep(sleep)
+                os.system('cls')
+                a += 1
+            a = 0
+            n = 0
+
+            for n in range(length, 0, -1):
+                front = (shape * a)
+                back = (shape * n)
+                print('|' + front + '[' + word + ']' + back + '|' + ' WORLD!', flush=True)
+                print('|' + back + '[' + word + ']' + front + '|' + ' WORLD!', flush=True)
+                time.sleep(sleep)
+                os.system('cls')
+                a += 1
+
+    test2(**kwargs)         # '리스트' 파라매터를 쓸 경우 : test2(*args)
+test_swing_hello2()
 
 """ 문제. 자료 3개의 딕셔너리() 키값, 밸류값을 프린트 해라.
  # [IN]  sample_dict = {1:'집', 2:'우산', 3:'자동차'}
