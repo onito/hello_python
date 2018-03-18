@@ -30,12 +30,105 @@ _script_run_utf8.main()
 기능 = 생성자, 소멸자, 연산자
 """
 
-class  ManOne(Object):
-    icon = ''
+class Human(object):   # (T)his(I)s(H)uman = 파스칼타입
+    total_count = 0    # 클래스 변수 = 전체적용
+    icon = '무던함'     # icon (성격)
+
+    def __init__(self, name):       # 매직매서드(생성자)
+        Human.total_count += 1
+        self.name = name
+
+    def __add__(self, other_obj):
+        print("'{}'와 '{}'는 결혼했습니다.".format(self.name, other_obj.name))
+
+    def __sub__(self, other_obj):
+        print("'{}'와 '{}'는 이혼했습니다.".format(self.name, other_obj.name))
+
+    def __del__(self):
+        print("'{}'는 죽었습니다.".format(self.name))
+
+    def say_hello(self, other_obj):        # 기능을 함수(매서드)
+        print("안녕하세요 '{}'님, 저는 '{}'".format(other_obj.name, self.name))
+
+    def say_status(self):       #
+        print("'{}' 님의 성격은 '{}' 입니다.".format(self.name, self.icon))
+
+
+class ManOne(Human):
     pass
 
-class MonTwo(ManOne):
-    pass
+
+def show_shortened_life_story_with(obj1, obj2):
+    print("\n\n'{}'와 '{}'의 짧은 인생스토리~ 시작!!.."
+          '\n--------------------'.format(obj1.name, obj2.name))
+    obj1 + obj2       # __add__() 매직매서드 실행
+    obj1 - obj2       # __Sub__() 매직매서드 실행
+    obj1.__del__()    # del().. __del__ 매직매서드 실행
+
+def practice_02():
+    kim = ManOne('김철수')
+    kim.icon = '영리함'
+
+    shin = ManOne('신영희')
+    shin.icon = '난폭함'
+
+    kim.say_status()        # '김철수' 님의 성격은 '영리함' 입니다.
+    shin.say_status()       # '신영희' 님의 성격은 '난폭함' 입니다.
+
+    kim.say_hello(shin)     # 안녕하세요 '신영희'님, 저는 '김철수'
+    shin.say_hello(kim)     # '신영희' 님의 성격은 '난폭함' 입니다.
+
+
+    show_shortened_life_story_with(kim, shin)
+    """
+    '김철수'와 '신영희'의 짧은 인생스토리~ 시작!!..
+    --------------------
+    '김철수'와 '신영희'는 결혼했습니다.
+    '김철수'와 '신영희'는 이혼했습니다.
+    '김철수'는 죽었습니다.
+    """
+practice_02()
+
+def practice_01():
+    h0 = Human('기본')
+    hu = Human('무던한인간')            # 인스턴스 선언! (인스턴스 생성)
+
+    hu1 = Human('난폭한인간')
+    hu1.icon = '난폭함'
+
+    hu2 = Human('사랑스러운인간')
+    hu2.icon = '사랑스러움'
+
+
+    print("COUNT: ", hu.total_count)   # 선언된 인스턴스. 값 또는 기능() 으로 호출
+    print("성격: ", hu.icon)
+    hu.say_hello(h0)
+    hu.say_status()
+    print('\n\n')
+
+
+    print("COUNT: ", hu1.total_count)   # 선언된 인스턴스. 값 또는 기능() 으로 호출
+    print("성격: ", hu1.icon)
+
+    hu1.say_hello(hu)
+    hu1.say_status()
+    print('\n\n')
+
+
+    print("COUNT: ", hu2.total_count)   # 선언된 인스턴스. 값 또는 기능() 으로 호출
+    print("성격: ", hu2.icon)
+
+    hu2.say_hello(hu1)
+    hu2.say_status()
+    print('\n\n')
+
+
+
+
+
+
+
+
 
 
 """ day21 :
