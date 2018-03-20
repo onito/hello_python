@@ -8,6 +8,9 @@ import time
 import datetime
 import pickle
 
+import _script_run_utf8
+_script_run_utf8.main()
+
 FILE_NAME_WITH_DIR = './_static/_pickle/wimpy_diary_dict.pck'
 
 def write_pickle(file_name_with_dir, diary_dict):

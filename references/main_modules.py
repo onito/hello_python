@@ -100,7 +100,7 @@ def copy_show():
 
     # print(type(harry).__name__)             # find class name from instance
     # print(harry.__class__.__name__)         # all the same above. = 'Animal'
-# copy_show()
+copy_show()
 
 # ------------- TIME() = Sh0w Time and TIME_Format
 def time_show():
@@ -245,4 +245,4 @@ def tkinter_show():
 
     canvas.pack()                       # Draw Window
     tk.mainloop()                       # Keep screen turn on. -- makeing a loop. '''
-tkinter_show()           # Felix the CAT images on Board
+# tkinter_show()           # Felix the CAT images on Board
