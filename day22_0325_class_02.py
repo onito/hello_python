@@ -7,9 +7,8 @@
 """
 import _script_run_utf8
 _script_run_utf8.main()
-
-
 SEPERATOR = "--"*20 +"\n"
+
 
 class Human(object):       # (T)his(I)s(H)uman = 파스칼타입
     total_count = 0             # 클래스 변수 = 전체적용
@@ -128,3 +127,69 @@ print("성격: ", hu2.__icon)
 hu2.say_status()
 hu2.say_hello(hu)
 print(SEPERATOR)
+
+
+def test2():
+
+    class ManOne(Human):
+        def __init__(self, name):
+            super().__init__(name)
+            print("'{}'님이 추가되었습니다, 그래서, 총 '{}'명".format(
+                self.name, super().total_count
+            ))
+
+        """ 스테틱 매서드는, 객체기능과 상관없지만 그림(편의)상 포함시켜야 할 때"""
+        @staticmethod
+        def show_shortened_life_story_with(obj1, obj2):
+            print("\n\n'{}'와 '{}'의 짧은 인생스토리~ 시작!!.."
+                  '\n--------------------'.format(obj1.name, obj2.name))
+            obj1 + obj2       # __add__() 매직매서드 실행
+            obj1 - obj2       # __Sub__() 매직매서드 실행
+            obj1.__del__()    # del().. __del__ 매직매서드 실행
+
+        """ 클래스 매서드는, 인스턴스 명으로 클래스변수에 접근할 방법을 열어준다."""
+        @classmethod
+        def show_count(cls):
+            print("전체 인원은=", cls.total_count)
+
+
+    mo = ManOne('김철수')
+    m1 = ManOne('신영희')
+    print(SEPERATOR)
+
+    mo.show_shortened_life_story_with(mo, m1)
+    mo.show_count()
+
+    """
+    '김철수'와 '신영희'의 짧은 인생스토리~ 시작!!..
+    --------------------
+    '김철수'와 '신영희'는 결혼했습니다.
+    '김철수'와 '신영희'는 이혼했습니다.
+    '김철수'는 죽었습니다.
+    전체 인원은= 2
+    """
+
+
+    def test1_instance_class():
+        # mo.icon = "희안함"   # ... 클래스 icon 을 바꾼게 아니고 / self.icon 생성
+        mo.look = "잘생김"
+        print("철수성격1=", mo.icon)
+        print("철수외모1=", mo.look)
+
+        # m1.icon = "상냥함"
+        print("영희성격2=", m1.icon)
+        # print("영희성격2=", m1.look)
+
+        ManOne.inner = "----좀비스러움----" # 클래스변수도 외부에서 생성가능
+        print("ManOne Icon 생성 =", ManOne.inner)
+        print(mo.inner)
+        print(m1.inner)
+
+        """
+        철수성격1= 무던함
+        철수외모1= 잘생김
+        영희성격2= 무던함
+        ManOne Icon 생성 = ----좀비스러움----
+        ----좀비스러움----
+        ----좀비스러움----
+        """
