@@ -7,7 +7,7 @@ def decorator(func):
             work_dir, file_list = kwargs['work_dir'], kwargs['file_list']
         elif len(args) == 1:
             work_dir, file_list = args, kwargs['file_list']
-        else:       # len(args) == 2:   error: >3
+        else:                       # len(args) == 2:   error: >3
             work_dir, file_list = args
 
         print(work_dir)
@@ -44,13 +44,13 @@ def show_file_list(work_dir, file_list):
         print(' %2s:  %s ' % (i, _file))
 
 def main():
-    work_dir = get_dir()          # 기본값 = -1 = 현재위치
+    work_dir = get_dir()          # 기본값 = 0 = 현재위치
     show_file_list(work_dir=work_dir, file_list=get_files(work_dir))
 
 
 
 """ if __name__ 로 경계를 치면, 외부 모듈호출 때 자체 실행을 방지한다. """
-if __name__ == '__main__':
+if __name__ == '__main__'
 
     _="""*** _files_dirs_run 스크립트 용도 :
     -------------------------

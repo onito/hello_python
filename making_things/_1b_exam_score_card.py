@@ -20,6 +20,12 @@
     총 점 : 557.00 점
     평 균 :  92.83 점
 """
+import os
+import sys
+
+DIRS = os.path.dirname(__file__).partition("hello_python\\")
+ROOT = DIRS[0] + DIRS[1]
+sys.path.append(ROOT)
 
 import _script_run_utf8
 _script_run_utf8.main()

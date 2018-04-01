@@ -6,12 +6,12 @@
 import os
 import time
 
-DIRS = os.path.dirname(__file__).partition("k_mooc_reboot\\")
+DIRS = os.path.dirname(__file__).partition("hello_python\\")
 ROOT = DIRS[0] + DIRS[1]
 # print(ROOT); quit()       # 테스트용.
 
 filename_with_dir = os.path.join(ROOT, '_static', '_pdb', "i_have_a_dream.pdb")
-#filename_with_dir = os.path.join(ROOT, '_static', '_pdb', "you_have_a_dream.pdb")
+# filename_with_dir = os.path.join(ROOT, '_static', '_pdb', "you_have_a_dream.pdb")
 
 try:
     for line in open(filename_with_dir, 'r').readlines():

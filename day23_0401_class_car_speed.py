@@ -2,26 +2,34 @@
  - name(kind), current_speed, max_speed, acceleration
    기본: Car()  --> 상속: SportCar(), TruckCar()
  """
-
-# NG = No Good
-import _static.module_custom.class_car as cc
-
-# class_car.py 일 경우
-# from _static.module_custom import class_car as cc
-
-# class_car.py의 필요한 기능만 불러 올 경우
-# from _static.module_custom.class_car import SportCar, TruckCar
-
-# 시스템 'PATH'로 지정 된 경우
-# import class_car as cc
-
+#---- 첫번째 방법 ---
+import _static.module_custom.class_car  as cc
 a = cc.SportCar('PORSCHE')
-b = cc.TruckCar('BONGO')
-c = cc.TruckCar('TCAR')
+print(a.show_status())
+cc.speed_up_down(a)
 
-a.show_status()
-b.show_status()
 
-# 나(self) 만 바꿀 수 있다
-c.attr['max_speed'] = 300
-c.show_status()
+# ---- 두번째 방법 ---
+from _static.module_custom.class_car import *
+
+if __name__ == '__main__':
+    a = TruckCar('T')
+    b = TruckCar('BONGO')
+    c = SportCar('PORSCHE')
+
+    # 나(self) 만 바꿀 수 있다
+    c.attr['max_speed'] = 200
+    c.attr['s_able'] = 50
+
+    c.show_status()
+
+    speed_up_down(c)
+    speed_up_down(b)
+
+
+# ---- 세번째 방법 ---
+from _static.module_custom.class_car import SportCar, speed_up_down
+
+a = SportCar('PORSCHE')
+print(a.show_status())
+speed_up_down(a)

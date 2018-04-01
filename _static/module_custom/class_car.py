@@ -14,9 +14,11 @@ FORM_INTRO = '''\
 class Car(object):
     _total_count = 0
     _kind = '일반용'
+    _car_dict = dict()
 
     def __init__(self, arg_model):
         Car._total_count += 1
+        Car._car_dict[Car._total_count] = [arg_model, self._kind]
         self.speed = 0
         print("['%-8s']!! A NEW CAR!! has come  ...  total: (%s)" %
               (arg_model, Car._total_count))
@@ -30,26 +32,36 @@ class Car(object):
 
     def show_status(self):
         args = tuple(self.attr.values())
+        print('---------------------------------')
+        for key, value in self._car_dict.items():
+            print(key, value)
+
         print(FORM_INTRO % args)
 
     def set_speed_up(self):
         if self.attr['speed'] + self.attr['s_able'] <= self.attr['max_speed']:
             self.attr['speed'] += self.attr['s_able']
-            return True
+            return True         # 정상가속
         else:
             self.attr['speed'] == self.attr['max_speed']
-            return True
+            return False        # 최고점 도달
 
     def set_speed_down(self):
         if self.attr['speed'] - self.attr['s_able'] >= 0:
-            self.attr['speed'] += self.attr['s_able']
-            return True
+            self.attr['speed'] -= self.attr['s_able']
+            return True         # 정상감속
         else:
             self.attr['speed'] == 0
-            return True
+            return False        # 최저점 도달
 
-    def say_speed(self):
-        print("PRESENT SPEED =", self.attr['speed'], "km/h")
+    def say_speed(self, bool):
+        if bool:
+            print("PRESENT SPEED =", self.attr['speed'], "km/h")
+        else:
+            if self.attr['speed'] == 0:
+                print(" ---- 차가 정지 했습니다 ---- ")
+            else:
+                print(" ==== 최고속도(%s km/h)입니다. ==== "%self.attr['max_speed'])
 
 
 class SportCar(Car):
@@ -78,22 +90,38 @@ class TruckCar(Car):
         self.attr = {
             'model':  arg_model,
             'kind':   self._kind,
-            'max_speed':   0,
-            's_able':   0,
+            'max_speed':   110,
+            's_able':   5,
             'speed':   0,
             }
 
 
+def speed_up_down(obj):
+    while obj.attr['speed'] < obj.attr['max_speed']:
+        obj.say_speed(obj.set_speed_up())
+    obj.say_speed(obj.set_speed_up())
 
-# a = SportCar('PPPPPPPPP')
-# a.show_status()
-# a.set_speed_up()
-# a.say_speed()
+    while obj.attr['speed'] > 0:
+        obj.say_speed(obj.set_speed_down())
+    obj.say_speed(obj.set_speed_down())
 
 
+
+# 경계선 아래는 외부에서 부를수 없다.
 if __name__ == '__main__':
-    # print(FORM_INTRO %('Porsche','SportCar',300,20,0))
-    a = SportCar('PPPPPPPPP')
-    a.show_status()
-    a.set_speed_up()
-    a.say_speed()
+    a = TruckCar('T')
+    b = TruckCar('BONGO')
+    c = SportCar('PORSCHE')
+
+    # 나(self) 만 바꿀 수 있다
+    c.attr['max_speed'] = 200
+    c.attr['s_able'] = 50
+
+    c.show_status()
+
+    speed_up_down(c)
+    speed_up_down(b)
+
+    # 차 사전의 접근권한(공용) = 클래스/인스턴스 모두 가능
+    # print(Car._car_dict)
+    # print(a._car_dict)
