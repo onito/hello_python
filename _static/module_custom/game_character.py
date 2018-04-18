@@ -32,3 +32,6 @@ class Character(object):
 
 if __name__ == '__main__':
     print(__doc__)
+
+    a = Character()
+    print(a)
