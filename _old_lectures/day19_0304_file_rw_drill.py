@@ -1,3 +1,11 @@
+import os
+import sys
+
+DIRS = os.path.dirname(__file__).partition("hello_python")
+ROOT = DIRS[0] + DIRS[1]
+sys.path.append(ROOT)
+# sys.path.append(os.path.join(ROOT , "_static", "module_custom", ""))
+
 import _script_run_utf8
 _script_run_utf8.main()
 
